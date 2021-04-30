@@ -1,0 +1,1 @@
+{"version":3,"sources":["src/style.css","src/style.scss"],"names":[],"mappings":"AAAA;AACA;AACA;AACA;ACDA;EACC,kBAHS","file":"components.5c3ab7f5.css","sourceRoot":"..","sourcesContent":["h1 {\n\tcolor: blue;\n}\n","$bgcolor: rgb(167, 167, 133);\n\nbody {\n\tbackground-color: $bgcolor;\n}\n"]}

@@ -1,0 +1,72 @@
+main {
+	display: flex;
+	flex-direction: column;
+	height: 80vh;
+	justify-content: center;
+	align-items: center;
+}
+
+h2 {
+	font-size: 2rem;
+}
+
+h4 {
+	text-align: center;
+	font-size: 1.5rem;
+	margin-top: 10px;
+	margin-bottom: 10px;
+}
+
+.intervalContainer {
+	display: flex;
+	margin: 0 40px;
+	align-items: center;
+}
+
+.intervalLengthContainer {
+	display: flex;
+}
+
+.timerContainer {
+	border: 2px solid blue;
+	margin-top: 40px;
+	border-radius: 10px;
+	width: 300px;
+	text-align: center;
+	box-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
+	padding: 10px;
+}
+
+button {
+	padding: 0px 0px;
+	margin: 0 5px;
+	height: 30px;
+	width: 50px;
+	background-color: rgb(87, 61, 112);
+	border: none;
+	outline: none;
+	cursor: pointer;
+	color: antiquewhite;
+	border-radius: 2px;
+}
+
+.intervalLength {
+	font-size: 1.5rem;
+	margin: 0 10px;
+}
+
+.timer {
+	font-size: 1.5rem;
+}
+
+.timerActions {
+	margin-top: 20px;
+	text-align: center;
+}
+
+i {
+	font-size: 1.5rem;
+}
+
+
+/*# sourceMappingURL=/src.a2b27638.css.map */
