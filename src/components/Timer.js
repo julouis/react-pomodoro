@@ -13,6 +13,7 @@ export default class Timer extends React.Component {
 		this.play = this.play.bind(this);
 		this.decreaseTimer = this.decreaseTimer.bind(this);
 		this.stop = this.stop.bind(this);
+		this.resetTimer = this.resetTimer.bind(this);
 	}
 
 	play() {
@@ -26,6 +27,20 @@ export default class Timer extends React.Component {
 	decreaseTimer() {
 		switch (this.state.timerSecond) {
 			case 0:
+				if (this.props.timerMinute === 0) {
+					if (this.state.isSession) {
+						this.setState({
+							isSession: false,
+						});
+						this.props.toggleInterval(this.state.isSession);
+					} else {
+						this.setState({
+							isSession: true,
+						});
+						this.props.toggleInterval(this.state.isSession);
+					}
+				}
+
 				this.props.updateTimerMinute();
 				this.setState({
 					timerSecond: 59,
@@ -45,6 +60,14 @@ export default class Timer extends React.Component {
 		clearInterval(this.state.intervalId);
 	}
 
+	resetTimer() {
+		this.stop();
+		this.props.resetTimer();
+		this.setState({
+			timerSecond: 0,
+		});
+	}
+
 	render() {
 		return (
 			<section>
@@ -62,13 +85,13 @@ export default class Timer extends React.Component {
 				</section>
 				<section className="timerActions">
 					<button onClick={this.play}>
-						<i class="fas fa-play"></i>
+						<i className="fas fa-play"></i>
 					</button>
 					<button onClick={this.stop}>
-						<i class="fas fa-pause"></i>
+						<i className="fas fa-pause"></i>
 					</button>
-					<button onClick={this.reset}>
-						<i class="fas fa-power-off"></i>
+					<button onClick={this.resetTimer}>
+						<i className="fas fa-power-off"></i>
 					</button>
 				</section>
 			</section>

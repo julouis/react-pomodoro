@@ -29644,13 +29644,13 @@ module.hot.accept(reloadCSS);
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-exports.default = BreakInterval;
+exports.default = breakInterval;
 
 var _react = _interopRequireDefault(require("react"));
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-function BreakInterval(props) {
+function breakInterval(props) {
   function decreaseCounter() {
     if (props.breakInterval === 1) {
       return;
@@ -29672,13 +29672,13 @@ function BreakInterval(props) {
   }, /*#__PURE__*/_react.default.createElement("button", {
     onClick: increaseCounter
   }, /*#__PURE__*/_react.default.createElement("i", {
-    class: "fas fa-chevron-up"
+    className: "fas fa-chevron-up"
   })), /*#__PURE__*/_react.default.createElement("p", {
     className: "intervalLength"
   }, props.breakInterval), /*#__PURE__*/_react.default.createElement("button", {
     onClick: decreaseCounter
   }, /*#__PURE__*/_react.default.createElement("i", {
-    class: "fas fa-chevron-down"
+    className: "fas fa-chevron-down"
   }))));
 }
 },{"react":"node_modules/react/index.js"}],"src/components/SessionLength.js":[function(require,module,exports) {
@@ -29715,13 +29715,13 @@ function SessionLength(props) {
   }, /*#__PURE__*/_react.default.createElement("button", {
     onClick: increaseSession
   }, /*#__PURE__*/_react.default.createElement("i", {
-    class: "fas fa-chevron-up"
+    className: "fas fa-chevron-up"
   })), /*#__PURE__*/_react.default.createElement("p", {
     className: "intervalLength"
   }, props.sessionLength), /*#__PURE__*/_react.default.createElement("button", {
     onClick: decreaseSession
   }, /*#__PURE__*/_react.default.createElement("i", {
-    class: "fas fa-chevron-down"
+    className: "fas fa-chevron-down"
   }))));
 }
 },{"react":"node_modules/react/index.js"}],"src/components/Timer.js":[function(require,module,exports) {
@@ -29779,6 +29779,7 @@ var Timer = /*#__PURE__*/function (_React$Component) {
     _this.play = _this.play.bind(_assertThisInitialized(_this));
     _this.decreaseTimer = _this.decreaseTimer.bind(_assertThisInitialized(_this));
     _this.stop = _this.stop.bind(_assertThisInitialized(_this));
+    _this.resetTimer = _this.resetTimer.bind(_assertThisInitialized(_this));
     return _this;
   }
 
@@ -29795,6 +29796,20 @@ var Timer = /*#__PURE__*/function (_React$Component) {
     value: function decreaseTimer() {
       switch (this.state.timerSecond) {
         case 0:
+          if (this.props.timerMinute === 0) {
+            if (this.state.isSession) {
+              this.setState({
+                isSession: false
+              });
+              this.props.toggleInterval(this.state.isSession);
+            } else {
+              this.setState({
+                isSession: true
+              });
+              this.props.toggleInterval(this.state.isSession);
+            }
+          }
+
           this.props.updateTimerMinute();
           this.setState({
             timerSecond: 59
@@ -29816,6 +29831,15 @@ var Timer = /*#__PURE__*/function (_React$Component) {
       clearInterval(this.state.intervalId);
     }
   }, {
+    key: "resetTimer",
+    value: function resetTimer() {
+      this.stop();
+      this.props.resetTimer();
+      this.setState({
+        timerSecond: 0
+      });
+    }
+  }, {
     key: "render",
     value: function render() {
       return /*#__PURE__*/_react.default.createElement("section", null, /*#__PURE__*/_react.default.createElement("section", {
@@ -29831,15 +29855,15 @@ var Timer = /*#__PURE__*/function (_React$Component) {
       }, /*#__PURE__*/_react.default.createElement("button", {
         onClick: this.play
       }, /*#__PURE__*/_react.default.createElement("i", {
-        class: "fas fa-play"
+        className: "fas fa-play"
       })), /*#__PURE__*/_react.default.createElement("button", {
         onClick: this.stop
       }, /*#__PURE__*/_react.default.createElement("i", {
-        class: "fas fa-pause"
+        className: "fas fa-pause"
       })), /*#__PURE__*/_react.default.createElement("button", {
-        onClick: this.reset
+        onClick: this.resetTimer
       }, /*#__PURE__*/_react.default.createElement("i", {
-        class: "fas fa-power-off"
+        className: "fas fa-power-off"
       }))));
     }
   }]);
@@ -29904,14 +29928,16 @@ var App = /*#__PURE__*/function (_React$Component) {
     _this.state = {
       breakLength: 5,
       sessionLength: 25,
-      timerMinute: 25
+      timerMinute: 25,
+      isPlay: false
     };
     _this.onIncreaseBreakLength = _this.onIncreaseBreakLength.bind(_assertThisInitialized(_this));
     _this.onDecreaseBreakLength = _this.onDecreaseBreakLength.bind(_assertThisInitialized(_this));
     _this.onIncreaseSessionLength = _this.onIncreaseSessionLength.bind(_assertThisInitialized(_this));
     _this.onDecreaseSessionLength = _this.onDecreaseSessionLength.bind(_assertThisInitialized(_this));
-    _this.onToggleInterval = _this.onToggleInterval.bind(_assertThisInitialized(_this));
     _this.onUpdateTimerMinute = _this.onUpdateTimerMinute.bind(_assertThisInitialized(_this));
+    _this.onToggleInterval = _this.onToggleInterval.bind(_assertThisInitialized(_this));
+    _this.onResetTimer = _this.onResetTimer.bind(_assertThisInitialized(_this));
     return _this;
   }
 
@@ -29976,15 +30002,24 @@ var App = /*#__PURE__*/function (_React$Component) {
       }
     }
   }, {
+    key: "onResetTimer",
+    value: function onResetTimer() {
+      this.setState({
+        timerMinute: this.state.sessionLength
+      });
+    }
+  }, {
     key: "render",
     value: function render() {
       return /*#__PURE__*/_react.default.createElement("main", null, /*#__PURE__*/_react.default.createElement("h2", null, "Pomodoro Clock"), /*#__PURE__*/_react.default.createElement("section", {
         className: "intervalLengthContainer"
       }, /*#__PURE__*/_react.default.createElement(_BreakInterval.default, {
+        isPlay: this.state.isPlay,
         breakInterval: this.state.breakLength,
         increaseBreak: this.onIncreaseBreakLength,
         decreaseBreak: this.onDecreaseBreakLength
       }), /*#__PURE__*/_react.default.createElement(_SessionLength.default, {
+        isPlay: this.state.isPlay,
         sessionLength: this.state.sessionLength,
         increaseSession: this.onIncreaseSessionLength,
         decreaseSession: this.onDecreaseSessionLength
@@ -29992,7 +30027,8 @@ var App = /*#__PURE__*/function (_React$Component) {
         timerMinute: this.state.timerMinute,
         breakLength: this.state.breakLength,
         updateTimerMinute: this.onUpdateTimerMinute,
-        toggleInverval: this.onToggleInterval
+        toggleInverval: this.onToggleInterval,
+        resetTimer: this.onResetTimer
       }));
     }
   }]);
@@ -30042,7 +30078,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "46423" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "32927" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};

@@ -20,11 +20,11 @@ export default function SessionLength(props) {
 			<h4>Session Length</h4>
 			<section className="intervalContainer">
 				<button onClick={increaseSession}>
-					<i class="fas fa-chevron-up"></i>
+					<i className="fas fa-chevron-up"></i>
 				</button>
 				<p className="intervalLength">{props.sessionLength}</p>
 				<button onClick={decreaseSession}>
-					<i class="fas fa-chevron-down"></i>
+					<i className="fas fa-chevron-down"></i>
 				</button>
 			</section>
 		</section>
