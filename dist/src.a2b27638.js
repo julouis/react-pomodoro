@@ -29644,13 +29644,13 @@ module.hot.accept(reloadCSS);
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-exports.default = breakInterval;
+exports.default = void 0;
 
 var _react = _interopRequireDefault(require("react"));
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-function breakInterval(props) {
+function BreakInterval(props) {
   function decreaseCounter() {
     if (props.breakInterval === 1) {
       return;
@@ -29670,24 +29670,29 @@ function breakInterval(props) {
   return /*#__PURE__*/_react.default.createElement("section", null, /*#__PURE__*/_react.default.createElement("h4", null, "Break Length"), /*#__PURE__*/_react.default.createElement("section", {
     className: "intervalContainer"
   }, /*#__PURE__*/_react.default.createElement("button", {
+    disabled: props.isPlay === true ? "disabled" : "",
     onClick: increaseCounter
   }, /*#__PURE__*/_react.default.createElement("i", {
     className: "fas fa-chevron-up"
   })), /*#__PURE__*/_react.default.createElement("p", {
     className: "intervalLength"
   }, props.breakInterval), /*#__PURE__*/_react.default.createElement("button", {
+    disabled: props.isPlay === true ? "disabled" : "",
     onClick: decreaseCounter
   }, /*#__PURE__*/_react.default.createElement("i", {
     className: "fas fa-chevron-down"
   }))));
 }
+
+var _default = BreakInterval;
+exports.default = _default;
 },{"react":"node_modules/react/index.js"}],"src/components/SessionLength.js":[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-exports.default = SessionLength;
+exports.default = void 0;
 
 var _react = _interopRequireDefault(require("react"));
 
@@ -29713,17 +29718,22 @@ function SessionLength(props) {
   return /*#__PURE__*/_react.default.createElement("section", null, /*#__PURE__*/_react.default.createElement("h4", null, "Session Length"), /*#__PURE__*/_react.default.createElement("section", {
     className: "intervalContainer"
   }, /*#__PURE__*/_react.default.createElement("button", {
+    disabled: props.isPlay === true ? "disabled" : "",
     onClick: increaseSession
   }, /*#__PURE__*/_react.default.createElement("i", {
     className: "fas fa-chevron-up"
   })), /*#__PURE__*/_react.default.createElement("p", {
     className: "intervalLength"
   }, props.sessionLength), /*#__PURE__*/_react.default.createElement("button", {
+    disabled: props.isPlay === true ? "disabled" : "",
     onClick: decreaseSession
   }, /*#__PURE__*/_react.default.createElement("i", {
     className: "fas fa-chevron-down"
   }))));
 }
+
+var _default = SessionLength;
+exports.default = _default;
 },{"react":"node_modules/react/index.js"}],"src/components/Timer.js":[function(require,module,exports) {
 "use strict";
 
@@ -29787,6 +29797,7 @@ var Timer = /*#__PURE__*/function (_React$Component) {
     key: "play",
     value: function play() {
       var intervalId = setInterval(this.decreaseTimer, 1000);
+      this.props.onPlayStopTimer(true);
       this.setState({
         intervalId: intervalId
       });
@@ -29808,12 +29819,13 @@ var Timer = /*#__PURE__*/function (_React$Component) {
               });
               this.props.toggleInterval(this.state.isSession);
             }
+          } else {
+            this.props.updateTimerMinute();
+            this.setState({
+              timerSecond: 59
+            });
           }
 
-          this.props.updateTimerMinute();
-          this.setState({
-            timerSecond: 59
-          });
           break;
 
         default:
@@ -29829,16 +29841,23 @@ var Timer = /*#__PURE__*/function (_React$Component) {
     key: "stop",
     value: function stop() {
       clearInterval(this.state.intervalId);
+      this.props.onPlayStopTimer(false);
     }
   }, {
     key: "resetTimer",
     value: function resetTimer() {
       this.stop();
       this.props.resetTimer();
+      this.props.onPlayStopTimer(false);
       this.setState({
-        timerSecond: 0
+        timerSecond: 0,
+        isSession: true
       });
     }
+    /* 	onPlayStopTimer() {
+    	this.props.onPlayStopTimer();
+    } */
+
   }, {
     key: "render",
     value: function render() {
@@ -29938,6 +29957,7 @@ var App = /*#__PURE__*/function (_React$Component) {
     _this.onUpdateTimerMinute = _this.onUpdateTimerMinute.bind(_assertThisInitialized(_this));
     _this.onToggleInterval = _this.onToggleInterval.bind(_assertThisInitialized(_this));
     _this.onResetTimer = _this.onResetTimer.bind(_assertThisInitialized(_this));
+    _this.onPlayStopTimer = _this.onPlayStopTimer.bind(_assertThisInitialized(_this));
     return _this;
   }
 
@@ -30009,6 +30029,13 @@ var App = /*#__PURE__*/function (_React$Component) {
       });
     }
   }, {
+    key: "onPlayStopTimer",
+    value: function onPlayStopTimer(isPlay) {
+      this.setState({
+        isPlay: isPlay
+      });
+    }
+  }, {
     key: "render",
     value: function render() {
       return /*#__PURE__*/_react.default.createElement("main", null, /*#__PURE__*/_react.default.createElement("h2", null, "Pomodoro Clock"), /*#__PURE__*/_react.default.createElement("section", {
@@ -30027,8 +30054,9 @@ var App = /*#__PURE__*/function (_React$Component) {
         timerMinute: this.state.timerMinute,
         breakLength: this.state.breakLength,
         updateTimerMinute: this.onUpdateTimerMinute,
-        toggleInverval: this.onToggleInterval,
-        resetTimer: this.onResetTimer
+        toggleInterval: this.onToggleInterval,
+        resetTimer: this.onResetTimer,
+        onPlayStopTimer: this.onPlayStopTimer
       }));
     }
   }]);
@@ -30078,7 +30106,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "32927" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "42191" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};

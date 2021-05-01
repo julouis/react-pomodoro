@@ -1,6 +1,6 @@
 import React from "react";
 
-export default function breakInterval(props) {
+function BreakInterval(props) {
 	function decreaseCounter() {
 		if (props.breakInterval === 1) {
 			return;
@@ -19,14 +19,22 @@ export default function breakInterval(props) {
 		<section>
 			<h4>Break Length</h4>
 			<section className="intervalContainer">
-				<button onClick={increaseCounter}>
+				<button
+					disabled={props.isPlay === true ? "disabled" : ""}
+					onClick={increaseCounter}
+				>
 					<i className="fas fa-chevron-up"></i>
 				</button>
 				<p className="intervalLength">{props.breakInterval}</p>
-				<button onClick={decreaseCounter}>
+				<button
+					disabled={props.isPlay === true ? "disabled" : ""}
+					onClick={decreaseCounter}
+				>
 					<i className="fas fa-chevron-down"></i>
 				</button>
 			</section>
 		</section>
 	);
 }
+
+export default BreakInterval;
