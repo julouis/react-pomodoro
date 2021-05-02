@@ -26,11 +26,7 @@
     "sass": "^1.32.11"
   
   }
-    {
-  "scripts": {
-    "build": "parcel build index.html"
-  }
-}
+
 
 }
 
