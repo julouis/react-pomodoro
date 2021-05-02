@@ -17,7 +17,7 @@ function BreakInterval(props) {
 	}
 	return (
 		<section>
-			<h4>Break Length</h4>
+			<h4>Break Duration</h4>
 			<section className="intervalContainer">
 				<button
 					disabled={props.isPlay === true ? "disabled" : ""}
@@ -25,7 +25,7 @@ function BreakInterval(props) {
 				>
 					<i className="fas fa-chevron-up"></i>
 				</button>
-				<p className="intervalLength">{props.breakInterval}</p>
+				<p className="intervalLength">{props.breakInterval} min</p>
 				<button
 					disabled={props.isPlay === true ? "disabled" : ""}
 					onClick={decreaseCounter}

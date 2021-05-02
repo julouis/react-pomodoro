@@ -97,7 +97,12 @@ class App extends React.Component {
 	render() {
 		return (
 			<main>
-				<h2>Pomodoro Clock</h2>
+				<h2>Rétro-doro Clock </h2>
+				<img
+					class="fit-picture"
+					src="https://cdn.discordapp.com/emojis/836498298176405514.png?v=1"
+					alt="Adrianus"
+				></img>
 				<section className="intervalLengthContainer">
 					<BreakInterval
 						isPlay={this.state.isPlay}

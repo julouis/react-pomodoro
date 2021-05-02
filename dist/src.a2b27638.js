@@ -29638,7 +29638,7 @@ var reloadCSS = require('_css_loader');
 
 module.hot.dispose(reloadCSS);
 module.hot.accept(reloadCSS);
-},{"_css_loader":"../../../../../usr/lib/node_modules/parcel-bundler/src/builtins/css-loader.js"}],"src/components/BreakInterval.js":[function(require,module,exports) {
+},{"./fonts/retro_gaming/Retro_Gaming.woff":[["Retro_Gaming.c8e34277.woff","src/fonts/retro_gaming/Retro_Gaming.woff"],"src/fonts/retro_gaming/Retro_Gaming.woff"],"_css_loader":"../../../../../usr/lib/node_modules/parcel-bundler/src/builtins/css-loader.js"}],"src/components/BreakInterval.js":[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -29667,7 +29667,7 @@ function BreakInterval(props) {
     props.increaseBreak();
   }
 
-  return /*#__PURE__*/_react.default.createElement("section", null, /*#__PURE__*/_react.default.createElement("h4", null, "Break Length"), /*#__PURE__*/_react.default.createElement("section", {
+  return /*#__PURE__*/_react.default.createElement("section", null, /*#__PURE__*/_react.default.createElement("h4", null, "Break Duration"), /*#__PURE__*/_react.default.createElement("section", {
     className: "intervalContainer"
   }, /*#__PURE__*/_react.default.createElement("button", {
     disabled: props.isPlay === true ? "disabled" : "",
@@ -29676,7 +29676,7 @@ function BreakInterval(props) {
     className: "fas fa-chevron-up"
   })), /*#__PURE__*/_react.default.createElement("p", {
     className: "intervalLength"
-  }, props.breakInterval), /*#__PURE__*/_react.default.createElement("button", {
+  }, props.breakInterval, " min"), /*#__PURE__*/_react.default.createElement("button", {
     disabled: props.isPlay === true ? "disabled" : "",
     onClick: decreaseCounter
   }, /*#__PURE__*/_react.default.createElement("i", {
@@ -29715,7 +29715,7 @@ function SessionLength(props) {
     props.decreaseSession();
   }
 
-  return /*#__PURE__*/_react.default.createElement("section", null, /*#__PURE__*/_react.default.createElement("h4", null, "Session Length"), /*#__PURE__*/_react.default.createElement("section", {
+  return /*#__PURE__*/_react.default.createElement("section", null, /*#__PURE__*/_react.default.createElement("h4", null, "Timer Duration"), /*#__PURE__*/_react.default.createElement("section", {
     className: "intervalContainer"
   }, /*#__PURE__*/_react.default.createElement("button", {
     disabled: props.isPlay === true ? "disabled" : "",
@@ -29724,7 +29724,7 @@ function SessionLength(props) {
     className: "fas fa-chevron-up"
   })), /*#__PURE__*/_react.default.createElement("p", {
     className: "intervalLength"
-  }, props.sessionLength), /*#__PURE__*/_react.default.createElement("button", {
+  }, props.sessionLength, " min"), /*#__PURE__*/_react.default.createElement("button", {
     disabled: props.isPlay === true ? "disabled" : "",
     onClick: decreaseSession
   }, /*#__PURE__*/_react.default.createElement("i", {
@@ -29863,7 +29863,7 @@ var Timer = /*#__PURE__*/function (_React$Component) {
     value: function render() {
       return /*#__PURE__*/_react.default.createElement("section", null, /*#__PURE__*/_react.default.createElement("section", {
         className: "timerContainer"
-      }, /*#__PURE__*/_react.default.createElement("h4", null, this.state.isSession === true ? "Session" : "Break"), /*#__PURE__*/_react.default.createElement("span", {
+      }, /*#__PURE__*/_react.default.createElement("h4", null, this.state.isSession === true ? "Timer" : "Break"), /*#__PURE__*/_react.default.createElement("span", {
         className: "timer"
       }, this.props.timerMinute), /*#__PURE__*/_react.default.createElement("span", {
         className: "timer"
@@ -30038,7 +30038,11 @@ var App = /*#__PURE__*/function (_React$Component) {
   }, {
     key: "render",
     value: function render() {
-      return /*#__PURE__*/_react.default.createElement("main", null, /*#__PURE__*/_react.default.createElement("h2", null, "Pomodoro Clock"), /*#__PURE__*/_react.default.createElement("section", {
+      return /*#__PURE__*/_react.default.createElement("main", null, /*#__PURE__*/_react.default.createElement("h2", null, "R\xE9tro-doro Clock "), /*#__PURE__*/_react.default.createElement("img", {
+        class: "fit-picture",
+        src: "https://cdn.discordapp.com/emojis/836498298176405514.png?v=1",
+        alt: "Adrianus"
+      }), /*#__PURE__*/_react.default.createElement("section", {
         className: "intervalLengthContainer"
       }, /*#__PURE__*/_react.default.createElement(_BreakInterval.default, {
         isPlay: this.state.isPlay,
@@ -30106,7 +30110,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "42191" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "37613" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};

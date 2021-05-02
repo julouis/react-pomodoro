@@ -17,7 +17,7 @@ function SessionLength(props) {
 
 	return (
 		<section>
-			<h4>Session Length</h4>
+			<h4>Timer Duration</h4>
 			<section className="intervalContainer">
 				<button
 					disabled={props.isPlay === true ? "disabled" : ""}
@@ -25,7 +25,7 @@ function SessionLength(props) {
 				>
 					<i className="fas fa-chevron-up"></i>
 				</button>
-				<p className="intervalLength">{props.sessionLength}</p>
+				<p className="intervalLength">{props.sessionLength} min</p>
 				<button
 					disabled={props.isPlay === true ? "disabled" : ""}
 					onClick={decreaseSession}
