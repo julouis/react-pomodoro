@@ -15,7 +15,7 @@
   "bugs": {
     "url": "https://github.com/julouis/react-pomodoro/issues"
   },
-  "homepage": "https://github.com/julouis/react-pomodoro#readme",
+  "homepage": "/",
   "description": "",
   "dependencies": {
     "react": "^17.0.2",
