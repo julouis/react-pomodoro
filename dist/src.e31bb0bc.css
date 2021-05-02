@@ -1,0 +1,111 @@
+@font-face {
+	font-family: Retro_Gaming;
+	src: url(/Retro_Gaming.a6c7f9f3.woff) format("woff");
+}
+
+body {
+	font-family: "Retro_Gaming", "Gill Sans", "Gill Sans MT", Calibri,
+		"Trebuchet MS", sans-serif;
+	background-color: rgb(124, 50, 50);
+}
+
+main {
+	display: flex;
+	flex-direction: column;
+	height: 80vh;
+	justify-content: center;
+	align-items: center;
+	min-width: 600px;
+}
+
+h2 {
+	font-size: 2rem;
+	padding-top: 100px;
+}
+
+h4 {
+	text-align: center;
+	font-size: 1.5rem;
+	margin-top: 10px;
+	margin-bottom: 10px;
+	align-items: center;
+	text-align: center;
+}
+
+.intervalContainer {
+	display: flex;
+	margin: 0 20px;
+	align-items: center;
+	min-width: 250px;
+}
+
+.intervalLengthContainer {
+	display: flex;
+}
+
+.timerContainer {
+	margin-top: 40px;
+
+	width: 300px;
+	text-align: center;
+
+	padding: 10px;
+	border-top: 10px solid black;
+	border-bottom: 10px solid black;
+	position: relative;
+}
+
+.timerContainer::before,
+.timerContainer::after {
+	content: "";
+	top: 0;
+	width: 10px;
+	height: 100%;
+	position: absolute;
+	background: black;
+}
+.timerContainer:before {
+	left: -10px;
+}
+.timerContainer::after {
+	right: -10px;
+}
+
+button {
+	padding: 0px 0px;
+	margin: 0 5px;
+	height: 30px;
+	width: 50px;
+	background-color: rgb(87, 61, 112);
+	border: none;
+	outline: none;
+	cursor: pointer;
+	color: antiquewhite;
+	border-radius: 2px;
+}
+
+button:disabled {
+	cursor: not-allowed;
+	background-color: rgb(155, 133, 177);
+}
+
+.intervalLength {
+	font-size: 1.5rem;
+	margin: 0 10px;
+}
+
+.timer {
+	font-size: 1.5rem;
+}
+
+.timerActions {
+	margin-top: 20px;
+	text-align: center;
+}
+
+i {
+	font-size: 1.5rem;
+}
+
+
+/*# sourceMappingURL=/src.e31bb0bc.css.map */

@@ -15,8 +15,8 @@
   "bugs": {
     "url": "https://github.com/julouis/react-pomodoro/issues"
   },
-  "homepage": "/",
-  "description": "",
+  "homepage": "http:///",
+  "description": "## Use React and Parcel to create a Pomodoro Timer",
   "dependencies": {
     "react": "^17.0.2",
     "react-dom": "^17.0.2"
@@ -24,9 +24,5 @@
   "devDependencies": {
     "parcel-bundler": "^1.12.5",
     "sass": "^1.32.11"
-  
   }
-
-
 }
-
